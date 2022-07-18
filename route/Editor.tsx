@@ -1,5 +1,5 @@
 import React from 'react';
-import {Editor} from 'amis-editor';
+import {Editor, ShortcutKey} from 'amis-editor';
 import {inject, observer} from 'mobx-react';
 import {RouteComponentProps} from 'react-router-dom';
 import {toast} from 'amis';
@@ -78,6 +78,7 @@ export default inject('store')(
           </div>
 
           <div className="Editor-header-actions">
+            <ShortcutKey />
             <div
               className={`header-action-btn margin-left-space ${
                 store.preview ? 'primary' : ''
@@ -110,6 +111,12 @@ export default inject('store')(
             $schemaUrl={schemaUrl}
             iframeUrl={iframeUrl}
             showCustomRenderersPanel={true}
+            amisEnv={{
+              fetcher: store.fetcher,
+              notify: store.notify,
+              alert: store.alert,
+              copy: store.copy,
+            }}
           />
         </div>
       </div>
